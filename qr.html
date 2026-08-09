@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>باركود QR | Amira للعطور</title>
+    <meta name="description" content="أنشئ باركود QR لموقع Amira للعطور أو لرقم الواتساب وحمّله بضغطة واحدة." />
+    <link rel="icon" href="images/amira-logo.jpg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="images/amira-logo.jpg" alt="Amira" />
+          <span><b>باركود QR</b><span>AMIRA QR</span></span>
+        </a>
+        <div class="actions"><a class="btn" href="index.html">عرض الموقع</a></div>
+      </div>
+    </header>
+
+    <main class="wrap" style="padding-bottom: 60px">
+      <section>
+        <div class="head">
+          <span class="kicker">SHARE</span>
+          <h2>شارك <span class="text-gold">Amira</span> بباركود</h2>
+          <div class="hairline"></div>
+        </div>
+        <div class="row2">
+          <div class="panel">
+            <div class="field">
+              <label>نوع الباركود</label>
+              <select id="kind">
+                <option value="site">رابط الموقع</option>
+                <option value="wa">محادثة واتساب</option>
+                <option value="tel">رقم الجوال</option>
+                <option value="custom">رابط / نص مخصص</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>القيمة</label>
+              <input id="value" />
+            </div>
+            <div class="field">
+              <label>الحجم (بكسل)</label>
+              <input id="size" type="number" value="420" min="200" max="900" />
+            </div>
+            <button class="btn gold" id="gen">توليد الباركود</button>
+          </div>
+          <div class="panel" style="text-align: center">
+            <div style="background: #fff; border-radius: 16px; padding: 16px; display: inline-block">
+              <img id="qr" alt="باركود QR لموقع Amira" style="width: 100%; max-width: 320px" />
+            </div>
+            <p style="font-size: 12px; color: var(--muted); margin: 12px 0" id="qrText"></p>
+            <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap">
+              <a class="btn" id="dl" download="amira-qr.png" href="#">تحميل PNG</a>
+              <button class="btn" id="printBtn">طباعة</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+      const kind = document.getElementById("kind"), val = document.getElementById("value");
+      const siteUrl = location.href.replace(/qr\.html.*$/, "index.html");
+      function preset() {
+        if (kind.value === "site") val.value = siteUrl;
+        else if (kind.value === "wa") val.value = "https://wa.me/" + SITE.whatsapp;
+        else if (kind.value === "tel") val.value = "tel:" + SITE.phone;
+        else val.value = "";
+        render();
+      }
+      function render() {
+        const s = Math.min(900, Math.max(200, +document.getElementById("size").value || 420));
+        const url = "https://api.qrserver.com/v1/create-qr-code/?size=" + s + "x" + s +
+          "&margin=8&data=" + encodeURIComponent(val.value || siteUrl);
+        document.getElementById("qr").src = url;
+        document.getElementById("dl").href = url;
+        document.getElementById("qrText").textContent = val.value || siteUrl;
+      }
+      kind.addEventListener("change", preset);
+      document.getElementById("gen").addEventListener("click", render);
+      document.getElementById("printBtn").addEventListener("click", () => window.print());
+      preset();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>لوحة التحكم | Amira للعطور</title>
+    <meta name="description" content="لوحة تحكم Amira للعطور: تعديل الأسعار والأسماء والمنتجات وبيانات التواصل مباشرة من المتصفح." />
+    <link rel="icon" href="images/amira-logo.jpg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="images/amira-logo.jpg" alt="Amira" />
+          <span><b>لوحة التحكم</b><span>AMIRA ADMIN</span></span>
+        </a>
+        <div class="actions">
+          <a class="btn" href="index.html">عرض الموقع</a>
+          <button class="btn gold" id="saveAll">حفظ التعديلات</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap" style="padding-bottom: 60px">
+      <section>
+        <div class="head">
+          <span class="kicker">SETTINGS</span>
+          <h2>بيانات <span class="text-gold">المتجر</span></h2>
+          <div class="hairline"></div>
+        </div>
+        <div class="panel row2" id="siteForm"></div>
+      </section>
+
+      <section style="padding-top: 0">
+        <div class="head">
+          <span class="kicker">QUICK PRICING</span>
+          <h2>تسعير <span class="text-gold">سريع</span></h2>
+          <div class="hairline"></div>
+        </div>
+        <div class="panel">
+          <div class="row2">
+            <div class="field"><label>سعر العطور بعد الخصم</label><input id="bulkPrice" type="number" value="199" /></div>
+            <div class="field"><label>السعر قبل الخصم</label><input id="bulkOld" type="number" value="230" /></div>
+          </div>
+          <p style="font-size: 13px; color: var(--muted); margin: 4px 0 12px">
+            يطبّق السعر على العطور المفردة فقط (بدون البكجات والتوزيعات).
+          </p>
+          <button class="btn" id="bulkApply">تطبيق على كل العطور</button>
+        </div>
+      </section>
+
+      <section style="padding-top: 0">
+        <div class="head">
+          <span class="kicker">PRODUCTS</span>
+          <h2>إدارة <span class="text-gold">المنتجات</span></h2>
+          <div class="hairline"></div>
+        </div>
+        <div class="panel" style="overflow-x: auto">
+          <table>
+            <thead>
+              <tr>
+                <th>الصورة</th><th>الاسم</th><th>الوصف</th><th>السعر</th><th>قبل الخصم</th>
+                <th>الحجم</th><th>الشعار</th><th>الفئة</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section style="padding-top: 0">
+        <div class="panel">
+          <b class="text-gold">أدوات</b>
+          <p style="font-size: 13px; color: var(--muted); margin: 10px 0 14px">
+            التعديلات تُحفظ في متصفح هذا الجهاز وتظهر فوراً في الموقع. يمكنك تصدير نسخة احتياطية أو استرجاع الإعدادات الأصلية.
+          </p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <button class="btn" id="exportBtn">تصدير JSON</button>
+            <button class="btn" id="resetBtn">استرجاع الأصلي</button>
+            <a class="btn" href="qr.html">صفحة QR</a>
+            <a class="btn" href="index.html#film">صفحة الفيديو</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+      const siteFields = [
+        ["name", "اسم المتجر"], ["phoneDisplay", "الجوال (للعرض)"], ["phone", "الجوال (للاتصال)"],
+        ["whatsapp", "رقم واتساب"], ["email", "البريد الإلكتروني"], ["address", "العنوان"],
+        ["hours", "أوقات العمل"], ["currency", "العملة"],
+      ];
+      const sf = document.getElementById("siteForm");
+      sf.innerHTML = siteFields
+        .map(([k, l]) => `<div class="field"><label>${l}</label><input data-s="${k}" value="${SITE[k] ?? ""}"></div>`)
+        .join("");
+
+      // نسخة قابلة للتعديل
+      let list = PRODUCTS.map((p) => ({ ...p }));
+      const rows = document.getElementById("rows");
+
+      function paintRows() {
+        rows.innerHTML = list.map((p, i) => `<tr>
+          <td><img src="images/${p.gallery[0]}" alt="${p.name}" style="width:48px;height:48px;object-fit:cover;border-radius:10px"></td>
+          <td><input data-p="${i}" data-f="name" value="${p.name}" style="width:130px"><br><small style="color:var(--muted)">${p.latin}</small></td>
+          <td><input data-p="${i}" data-f="tagline" value="${p.tagline ?? ""}" style="width:230px"></td>
+          <td><input data-p="${i}" data-f="price" type="number" value="${p.price}" style="width:90px"></td>
+          <td><input data-p="${i}" data-f="oldPrice" type="number" value="${p.oldPrice ?? ""}" style="width:90px"></td>
+          <td><input data-p="${i}" data-f="size" value="${p.size}" style="width:110px"></td>
+          <td><input data-p="${i}" data-f="badge" value="${p.badge ?? ""}" style="width:120px"></td>
+          <td><select data-p="${i}" data-f="gender">${["نسائي", "رجالي", "للجنسين"]
+            .map((g) => `<option ${g === p.gender ? "selected" : ""}>${g}</option>`).join("")}</select></td>
+          <td><button class="btn" data-del="${i}">حذف</button></td>
+        </tr>`).join("");
+
+        rows.querySelectorAll("[data-del]").forEach((b) =>
+          b.addEventListener("click", () => {
+            if (!confirm("حذف هذا المنتج من المتجر؟")) return;
+            collect();
+            list.splice(+b.dataset.del, 1);
+            paintRows();
+          }));
+      }
+
+      function collect() {
+        document.querySelectorAll("[data-p]").forEach((i) => {
+          const p = list[+i.dataset.p], f = i.dataset.f, v = String(i.value).trim();
+          if (!p) return;
+          if (f === "price") p.price = Number(v) || p.price;
+          else if (f === "oldPrice") { if (v) p.oldPrice = Number(v); else delete p.oldPrice; }
+          else if (f === "badge") { if (v) p.badge = v; else delete p.badge; }
+          else p[f] = v;
+        });
+      }
+
+      paintRows();
+
+      document.getElementById("bulkApply").addEventListener("click", () => {
+        collect();
+        const price = Number(document.getElementById("bulkPrice").value) || 199;
+        const old = Number(document.getElementById("bulkOld").value) || 0;
+        list.forEach((p) => {
+          const single = /100 مل/.test(p.size || "");
+          if (!single) return;
+          p.price = price;
+          if (old > price) p.oldPrice = old; else delete p.oldPrice;
+        });
+        paintRows();
+        alert("تم التطبيق ✅ اضغط «حفظ التعديلات» للتثبيت.");
+      });
+
+      document.getElementById("saveAll").addEventListener("click", () => {
+        const s = { ...SITE };
+        document.querySelectorAll("[data-s]").forEach((i) => (s[i.dataset.s] = i.value.trim()));
+        collect();
+        localStorage.setItem("amira_site", JSON.stringify(s));
+        localStorage.setItem("amira_products", JSON.stringify(list));
+        alert("تم الحفظ ✅ افتح الموقع لمشاهدة التعديلات.");
+        location.reload();
+      });
+
+      document.getElementById("exportBtn").addEventListener("click", () => {
+        collect();
+        const data = { site: SITE, products: list, ads: ADS };
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
+        a.download = "amira-data.json";
+        a.click();
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", () => {
+        if (!confirm("استرجاع الإعدادات الأصلية؟")) return;
+        ["amira_site", "amira_products", "amira_ads"].forEach((k) => localStorage.removeItem(k));
+        location.reload();
+      });
+    </script>
+  </body>
+</html>
