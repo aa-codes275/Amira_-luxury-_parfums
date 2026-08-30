@@ -98,6 +98,10 @@ const ADS_DEFAULT = [
   { src: "shahryar-box-bag.jpg", kicker: "جاهز للإهداء", title: "تغليف فاخر" },
   { src: "kahraman-box.jpg", kicker: "كهرمان", title: "علبة بحكاية" },
   { src: "shahryar-hand.jpg", kicker: "كواليس", title: "من عدسة Amira" },
+    { src: "5812427182561759002_121.jpg", kicker: "اميره القحاطاني خبيرة عطور", title: "  Amira" },
+    { src: "5807923582934388349_121.jpg", kicker: "اميره القحاطاني  ", title: "  Amira" },
+    { src: "5807923582934388354_121.jpg", kicker: "   Amira ", title: "  Amira" },
+
 ];
 
 const HERO_SLIDES = [
@@ -316,3 +320,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowLeft") lbMove(1);
   });
 });
+
