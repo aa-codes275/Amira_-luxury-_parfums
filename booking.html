@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حجز وطلب منتج | Amira للعطور</title><meta name="description" content="حدد عطرك والكمية وأرسل بيانات الطلب إلى أميرة عبر واتساب."><meta property="og:title" content="حجز وطلب منتج | Amira للعطور"><meta property="og:description" content="حدد عطرك والكمية وأرسل بيانات الطلب إلى أميرة عبر واتساب."><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Cinzel:wght@500;700&display=swap"><link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="vendor/qrcode.js"></script></head>
+<body data-page="booking"><header class="site">
+<div class="wrap bar">
+<a class="brand" href="index.html">
+<img alt="شعار Amira للعطور" src="images/amira-logo.jpg"/>
+<span><b id="brandName">Amira للعطور</b><span>LUXURY PARFUMS</span></span>
+</a>
+<nav class="links"><a href="index.html">الرئيسية</a><a href="products.html">المنتجات</a><a href="gallery.html">المعرض</a><a href="reviews.html">التقييمات</a><a href="contact.html">التواصل</a><a href="booking.html">حجز منتج</a><a href="qr.html">رموز QR</a></nav>
+<div class="actions">
+<a class="btn" data-wa="" href="#" rel="noopener" target="_blank">واتساب</a>
+<button class="btn gold" id="cartBtn">السلة <span class="cart-count" id="cartCount">0</span></button>
+</div>
+</div>
+</header><main><section class="wrap"><div class="head"><span class="kicker">YOUR ORDER</span><h1>احجز عطرك المفضل</h1><div class="hairline"></div></div><div class="booking-layout"><div><h2>تفاصيل الطلب</h2><div id="bookingItems"></div><div class="field"><label for="bookingProduct">أضف منتجًا</label><select id="bookingProduct"><option value="">جاري تحميل المنتجات…</option></select></div><div class="field"><label for="bookingQty">الكمية</label><input id="bookingQty" type="number" value="1" min="1" step="1" required></div><button class="btn" id="bookingAdd">إضافة للطلب +</button><div class="total booking-total"><span>الإجمالي</span><span id="bookingTotal">0</span></div></div><form id="bookingForm" class="form-stack"><h2>بيانات التواصل والتوصيل</h2><div class="field"><label for="clientName">الاسم الكامل</label><input id="clientName" required maxlength="100" autocomplete="name"></div><div class="field"><label for="clientPhone">رقم الجوال</label><input id="clientPhone" type="tel" required pattern="[+0-9 ()-]{8,20}" autocomplete="tel" dir="ltr"></div><div class="row2"><div class="field"><label for="clientCity">المدينة</label><input id="clientCity" required maxlength="100"></div><div class="field"><label for="clientDistrict">الحي</label><input id="clientDistrict" required maxlength="100"></div></div><div class="field"><label for="clientNotes">العنوان وملاحظات الطلب</label><textarea id="clientNotes" rows="3" maxlength="1000"></textarea></div><button class="btn gold" id="bookingSubmit">إرسال الطلب عبر واتساب</button><p id="bookingStatus" role="status"></p><a id="bookingWhatsApp" class="btn" hidden target="_blank" rel="noopener">فتح رسالة الطلب على واتساب</a></form></div></section></main><footer class="site" id="contact">
+<div class="wrap">
+<div class="fgrid">
+<div>
+<img alt="Amira" src="images/amira-logo.jpg" style="width: 64px; border-radius: 50%; border: 1px solid var(--border)"/>
+<h4 style="margin-top: 14px">عن أميرة</h4>
+<p style="font-size: 13px; color: var(--muted); line-height: 2">عطور فاخرة بتركيبات مختارة وثبات يدوم، مع تغليف يليق بالإهداء.</p>
+</div>
+<div>
+<h4>معلومات التواصل</h4>
+<ul>
+<li>الجوال: <a data-tel="text" href="#"></a></li>
+<li>البريد: <a data-mail="" href="#"></a></li>
+<li id="fAddress"></li>
+<li id="fHours"></li>
+</ul>
+</div>
+<div>
+<h4>تابعنا</h4>
+<div class="socials" id="socials"></div>
+<div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap">
+<a class="btn gold" data-wa="" href="#" rel="noopener" target="_blank">واتساب <span id="fPhone"></span></a>
+<a class="btn" href="admin.html">لوحة التحكم</a>
+</div>
+</div>
+</div>
+<p class="copy">© <span id="year"></span> Amira للعطور — جميع الحقوق محفوظة.</p>
+</div>
+</footer><a aria-label="واتساب" class="float-wa" data-wa="" href="#" rel="noopener" target="_blank">WA</a><div class="overlay" id="overlay"></div><aside aria-label="سلة الطلب" class="drawer" id="drawer">
+<header>
+<b>سلة الطلب</b>
+<button class="btn" id="closeCart">إغلاق ✕</button>
+</header>
+<div class="items" id="cartItems"></div>
+<footer>
+<div class="total"><span>الإجمالي</span><span class="text-gold" id="cartTotal">0</span></div>
+<a class="btn gold" id="checkout" href="booking.html">متابعة الطلب</a>
+</footer>
+</aside><div class="lb" id="lb">
+<div class="lb-top">
+<b class="text-gold" id="lbTitle"></b>
+<span id="lbCount"></span>
+<span style="display: flex; gap: 8px">
+<button class="btn" id="lbZoomOut">−</button>
+<button class="btn" id="lbZoomIn">+</button>
+<button class="btn" id="lbClose">✕</button>
+</span>
+</div>
+<div class="lb-stage" style="position: relative">
+<button class="lb-nav prev" id="lbPrev">‹</button>
+<img alt="" id="lbImg"/>
+<button class="lb-nav next" id="lbNext">›</button>
+</div>
+<div class="lb-thumbs" id="lbThumbs"></div>
+</div><script src="app.js"></script><script src="pages.js"></script></body></html>

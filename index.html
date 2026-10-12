@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>عطر يليق بحضورك | Amira للعطور</title><meta name="description" content="اكتشف عالم أميرة للعطور وعروض المجموعة وفيلم التصوير."><meta property="og:title" content="عطر يليق بحضورك | Amira للعطور"><meta property="og:description" content="اكتشف عالم أميرة للعطور وعروض المجموعة وفيلم التصوير."><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Cinzel:wght@500;700&display=swap"><link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="vendor/qrcode.js"></script></head>
+<body data-page="index"><header class="site">
+<div class="wrap bar">
+<a class="brand" href="index.html">
+<img alt="شعار Amira للعطور" src="images/amira-logo.jpg"/>
+<span><b id="brandName">Amira للعطور</b><span>LUXURY PARFUMS</span></span>
+</a>
+<nav class="links"><a href="index.html">الرئيسية</a><a href="products.html">المنتجات</a><a href="gallery.html">المعرض</a><a href="reviews.html">التقييمات</a><a href="contact.html">التواصل</a><a href="booking.html">حجز منتج</a><a href="qr.html">رموز QR</a></nav>
+<div class="actions">
+<a class="btn" data-wa="" href="#" rel="noopener" target="_blank">واتساب</a>
+<button class="btn gold" id="cartBtn">السلة <span class="cart-count" id="cartCount">0</span></button>
+</div>
+</div>
+</header><main><section class="hero" style="padding: 0">
+<div class="hero-media" id="heroMedia"></div>
+<div class="hero-copy">
+<span class="kicker" id="heroKicker"></span>
+<h1><span class="hero-brand">Amira للعطور</span><span id="heroTitle"></span></h1>
+<p id="heroText"></p>
+<div class="hero-cta">
+<a class="btn gold" href="products.html">تسوّق الآن</a>
+<a class="btn" data-wa="" href="#" rel="noopener" target="_blank">اطلب على واتساب</a>
+</div>
+<div class="dots" id="heroDots"></div>
+</div>
+</section><div class="strip">
+<div class="strip-track">
+<span>ثبات يدوم طويلاً</span><span>تركيبة فاخرة</span><span>جودة مضمونة</span><span>تغليف هدايا</span>
+<span>توصيل لكل المناطق</span><span>ثبات يدوم طويلاً</span><span>تركيبة فاخرة</span><span>جودة مضمونة</span>
+<span>تغليف هدايا</span><span>توصيل لكل المناطق</span>
+</div>
+</div><section id="film">
+<div class="wrap">
+<div class="head">
+<span class="kicker">AMIRA FILM</span>
+<h2>شاهد <span class="text-gold">Amira</span> بالفيديو</h2>
+<div class="hairline"></div>
+</div>
+<div class="film">
+<div class="film-inner">
+<video autoplay="" id="filmVideo" loop="" muted="" playsinline="" preload="auto"></video>
+<button aria-label="تشغيل الفيديو" class="film-play" id="filmPlay" style="display: none;">▶</button>
+</div>
+<div class="film-bar">
+<div class="film-meta">
+<small>AMIRA PARFUMS</small>
+<b class="text-gold">من كواليس التصوير</b>
+</div>
+<div class="film-ctrl">
+<button aria-label="الصوت" id="filmSound">🔇</button>
+<button aria-label="تشغيل / إيقاف" class="gold" id="filmToggle">⏸</button>
+</div>
+</div>
+</div>
+</div>
+</section><section class="home-links wrap"><span class="kicker">EXPLORE AMIRA</span><h2>اكتشف عالم أميرة</h2><div class="home-link-grid"><a href="products.html">تشكيلة العطور <span>←</span></a><a href="gallery.html">الصور والمعرض <span>←</span></a><a href="reviews.html">آراء العملاء <span>←</span></a></div></section></main><footer class="site" id="contact">
+<div class="wrap">
+<div class="fgrid">
+<div>
+<img alt="Amira" src="images/amira-logo.jpg" style="width: 64px; border-radius: 50%; border: 1px solid var(--border)"/>
+<h4 style="margin-top: 14px">عن أميرة</h4>
+<p style="font-size: 13px; color: var(--muted); line-height: 2">عطور فاخرة بتركيبات مختارة وثبات يدوم، مع تغليف يليق بالإهداء.</p>
+</div>
+<div>
+<h4>معلومات التواصل</h4>
+<ul>
+<li>الجوال: <a data-tel="text" href="#"></a></li>
+<li>البريد: <a data-mail="" href="#"></a></li>
+<li id="fAddress"></li>
+<li id="fHours"></li>
+</ul>
+</div>
+<div>
+<h4>تابعنا</h4>
+<div class="socials" id="socials"></div>
+<div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap">
+<a class="btn gold" data-wa="" href="#" rel="noopener" target="_blank">واتساب <span id="fPhone"></span></a>
+<a class="btn" href="admin.html">لوحة التحكم</a>
+</div>
+</div>
+</div>
+<p class="copy">© <span id="year"></span> Amira للعطور — جميع الحقوق محفوظة.</p>
+</div>
+</footer><a aria-label="واتساب" class="float-wa" data-wa="" href="#" rel="noopener" target="_blank">WA</a><div class="overlay" id="overlay"></div><aside aria-label="سلة الطلب" class="drawer" id="drawer">
+<header>
+<b>سلة الطلب</b>
+<button class="btn" id="closeCart">إغلاق ✕</button>
+</header>
+<div class="items" id="cartItems"></div>
+<footer>
+<div class="total"><span>الإجمالي</span><span class="text-gold" id="cartTotal">0</span></div>
+<a class="btn gold" id="checkout" href="booking.html">متابعة الطلب</a>
+</footer>
+</aside><div class="lb" id="lb">
+<div class="lb-top">
+<b class="text-gold" id="lbTitle"></b>
+<span id="lbCount"></span>
+<span style="display: flex; gap: 8px">
+<button class="btn" id="lbZoomOut">−</button>
+<button class="btn" id="lbZoomIn">+</button>
+<button class="btn" id="lbClose">✕</button>
+</span>
+</div>
+<div class="lb-stage" style="position: relative">
+<button class="lb-nav prev" id="lbPrev">‹</button>
+<img alt="" id="lbImg"/>
+<button class="lb-nav next" id="lbNext">›</button>
+</div>
+<div class="lb-thumbs" id="lbThumbs"></div>
+</div><script src="app.js"></script><script src="pages.js"></script></body></html>
