@@ -8,16 +8,15 @@ const SITE_DEFAULT = {
   phoneDisplay: "+966 55 878 7732",
   phone: "+966558787732",
   whatsapp: "966558787732",
-  email: "info@ameraksa.com",
+  email: "amira.perfume1@gmail.com",
   address: "المملكة العربية السعودية — الرياض",
-  hours: "يومياً من 10 صباحاً حتى 11 مساءً",
   currency: "ر.س",
   socials: [
     { label: "واتساب", href: "https://wa.me/966558787732", handle: "+966 55 878 7732" },
-    { label: "سناب شات", href: "https://snapchat.com/t/YV11SKgs", handle: "@amira.parfums" },
+    { label: "سناب شات", href: "https://snapchat.com/t/ASOkxZcD", handle: "@amira.parfums" },
     { label: "تيك توك", href: "https://www.tiktok.com/@amira.parfums1", handle: "@amira.parfums1" },
     { label: "إنستجرام", href: "https://www.instagram.com/amira.parfums.1", handle: "@amira.parfums.1" },
-    { label: "متجر سلة", href: "https://salla.sa/shmatalmsa", handle: "متجر عطور أميرة" }
+    { label: "متجر ", href: "https://ameraksa.com/", handle: "متجر عطور أميرة" }
   ],
 };
 
